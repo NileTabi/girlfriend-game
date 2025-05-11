@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Girlfriend?</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: rgba(255, 240, 245, 0.8);
+      color: #333;
+      overflow: hidden;
+    }
+
+    video.bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .container {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: rgba(255, 245, 250, 0.7);
+      padding: 1rem;
+    }
+
+    .question-box {
+      max-width: 700px;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .question {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .options button {
+      margin: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #f4cccc;
+      transition: background-color 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #e6b8b8;
+    }
+  </style>
+</head>
+<body>
+  <video class="bg-video" autoplay loop muted>
+    <source src="copy_D2D6F14C-38B3-422D-9EF2-AA1E079A7346.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <audio autoplay loop>
+    <source src="Tyler, The Creator - ARE WE STILL FRIENDS_.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container">
+    <div class="question-box">
+      <div class="question" id="question">Loading...</div>
+      <div class="options">
+        <button id="option0">Option 1</button>
+        <button id="option1">Option 2</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "It all started with a moment... a glance across the room. What did you feel?",
+        options: ["Curious", "Drawn"]
+      },
+      {
+        text: "Every time we talk, there's this feeling. What do you think it is?",
+        options: ["Comfort", "Excitement"]
+      },
+      {
+        text: "Imagine us walking through a city at night. What are we doing?",
+        options: ["Laughing over snacks", "Sharing secrets"]
+      },
+      {
+        text: "We always seem to...",
+        options: ["Understand each other", "Make things better"]
+      },
+      {
+        text: "I wanted to make something special for you. Something that shows...",
+        options: ["My intention", "My heart"]
+      },
+      {
+        text: "If our story had a soundtrack, what would it sound like?",
+        options: ["A soft lo-fi beat", "A deep love ballad"]
+      },
+      {
+        text: "One last question before the real one...",
+        options: ["Are you ready?", "Let’s go!"]
+      },
+      {
+        text: "So here it is...",
+        options: ["Drum roll...", "Deep breath..."]
+      },
+      {
+        text: "Will you be my girlfriend?",
+        options: ["Yes 😍", "Definitely yes 💖"]
+      }
+    ];
+
+    let current = 0;
+
+    function loadQuestion() {
+      const q = questions[current];
+      document.getElementById('question').textContent = q.text;
+      document.getElementById('option0').textContent = q.options[0];
+      document.getElementById('option1').textContent = q.options[1];
+    }
+
+    function choose(option) {
+      current++;
+      if (current < questions.length) {
+        loadQuestion();
+      } else {
+        document.querySelector('.question-box').innerHTML = '<h2 style="font-size:2rem">I\'m so glad you made it this far 💖</h2><p>Let me know your answer in person or message me 🥹</p>';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('option0').addEventListener('click', () => choose(0));
+      document.getElementById('option1').addEventListener('click', () => choose(1));
+      loadQuestion();
+    });
+  </script>
+</body>
+</html>
